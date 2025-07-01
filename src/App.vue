@@ -10,34 +10,62 @@ const billTo = ref("Sellery LTD (Company No.: 1553171) Address: 19-21 Great Towe
 const paymentTo = ref("Adem");
 
 // Payment Mapping 預設資料 (Adem 與 May 的樣本)
-const paymentMapping = {
+const paymentMapping = reactive({
   Adem: { bank: "Revolut", account: "16431952", sortCode: "04-29-09", bankName: "Yi Wei Chen" },
   Andrea: { bank: "Monzo Bank", account: "18633142", sortCode: "04-00-04", bankName: "Andrea Medrano Puertas" },
   Danqi: { bank: "Lloyds", account: "41246063", sortCode: "30-95-42", bankName: "Danqi Zhao" },
   Geo: { bank: "Lloyds Bank", account: "17766060", sortCode: "30-80-33", bankName: "Georgia K Ker" },
   Hannah: { bank: "Halifax", account: "10987368", sortCode: "110039", bankName: "Hannah Musselwhite" },
-  JC: { bank: "Lloyds", account: "31261163", sortCode: "30-94-87", bankName: "Jiacheng Chen" },
+  JC: { bank: "Lloyds", account: "56434868", sortCode: "77-77-52", bankName: "Jiacheng Chen" },
   Kate: { bank: "Barclays Bank", account: "73743306", sortCode: "20-27-94", bankName: "Kate Shortell" },
-  Katie: { bank: "Unknown", account: "88006409", sortCode: "04-00-75", bankName: "Katie Waters" },
+  Katie: { bank: "", account: "88006409", sortCode: "04-00-75", bankName: "Katie Waters" },
   Laura: { bank: "Santander", account: "90233146", sortCode: "09-01-27", bankName: "Laura King" },
   Elli: { bank: "Lloyds", account: "31261163", sortCode: "30-94-87", bankName: "Li Ai" },
   Melody: { bank: "Monzo", account: "22277235", sortCode: "04-00-04", bankName: "Liang Yu" },
   May: { bank: "Sample Bank B", account: "87654321", sortCode: "333444", bankName: "May" },
-  Mehveet: { bank: "Unknown", account: "40937649", sortCode: "20-63-28", bankName: "Mehveet Jhaar" },
+  Mehveet: { bank: "", account: "40937649", sortCode: "20-63-28", bankName: "Mehveet Jhaar" },
   Eljona: { bank: "Barclays", account: "40079022", sortCode: "20-72-33", bankName: "Miss Britney Murati" },
-  Olive: { bank: "Unknown", account: "22586657", sortCode: "40-20-30", bankName: "Miss O J Cowap" },
+  Olive: { bank: "", account: "22586657", sortCode: "40-20-30", bankName: "Miss O J Cowap" },
   Ruby: { bank: "Lloyds Bank", account: "36596460", sortCode: "30-91-83", bankName: "Miss Ruby L Cross" },
-  Mya: { bank: "Unknown", account: "13507661", sortCode: "11-07-96", bankName: "Mya Wolfenden" },
+  Mya: { bank: "", account: "13507661", sortCode: "11-07-96", bankName: "Mya Wolfenden" },
   Noemi: { bank: "Metro", account: "42588210", sortCode: "23-05-80", bankName: "Noemi Oberhauser" },
   Sabrina: { bank: "Barclays Bank", account: "53358291", sortCode: "20-73-53", bankName: "S PINNU" },
   Serena: { bank: "Monzo", account: "79124518", sortCode: "04-00-04", bankName: "Shugela Kunanbayi" },
   Veronica: { bank: "NatWest", account: "25824775", sortCode: "52-21-34", bankName: "Veronica Malka" },
-  Verona: { bank: "Barclays Bank", account: "00592307", sortCode: "20-44-91", bankName: "Verona" },
+  Verona: { bank: "Barclays Bank", account: "65747525", sortCode: "04-00-03", bankName: "Verona" },
   Zhang_Wang: { bank: "Lloyds", account: "44801863", sortCode: "30-97-90", bankName: "Wangyiyang Zhang" },
   Demetria: { bank: "Lloyds", account: "73603768", sortCode: "30-90-53", bankName: "Xingzi Lin" },
-  Zineb: { bank: "Unknown", account: "43962077", sortCode: "04-00-04", bankName: "Zineb OUDAOUDI" },
-  Ziyi: { bank: "Lloyds", account: "49833168", sortCode: "30-64-43", bankName: "Ziyi Dong" }
-};
+  Zineb: { bank: "", account: "43962077", sortCode: "04-00-04", bankName: "Zineb OUDAOUDI" },
+  Ziyi: { bank: "Lloyds", account: "49833168", sortCode: "30-64-43", bankName: "Ziyi Dong" },
+  Rui: { bank: "", account: "27149062", sortCode: "30-94-87", bankName: "Rui Zhang" },
+  Betty: { bank: "Lloyds", account: "47165860", sortCode: "77-77-53", bankName: "SUNJIA HUO" },
+  Lauren: { bank: "Lloyds", account: "10338449", sortCode: "60-83-71", bankName: "Lauren Taylor" },
+  Bethany: { bank: "NatWest", account: "17119405", sortCode: "60-05-12", bankName: "BETHANY A PERRINS" },
+  Callie: { bank: "Metro bank", account: "44923971", sortCode: "23-05-80", bankName: "MISS C M MOCOCK" },
+  Phoebe: { bank: "NatWest", account: "46915621", sortCode: "60-13-12", bankName: "Phoebe A Q Lyons" },
+  Fran: { bank: "NatWest Bank", account: "46651691", sortCode: "60-07-31", bankName: "Francesca Charlotte Harris" },
+  Chloe: { bank: "HSBC UK BANK plc", account: "12849704", sortCode: "40-01-06", bankName: "Chloe Martinez" },
+  Yoki: { bank: "", account: "71082078", sortCode: "40-03-40", bankName: "LIU SHICEN" },
+  Sarah: { bank: "NatWest", account: "64923541", sortCode: "01-30-99", bankName: "Miss Sarah A Adesiyan" },
+  Simone: { bank: "Halifax", account: "00718184", sortCode: "11-04-20", bankName: "Simone Mitev" },
+  Joyce: { bank: "Monzo", account: "52100577", sortCode: "04-00-03", bankName: "Jiaying Ouyang" },
+  Tex: { bank: "", account: "91928263", sortCode: "04-00-03", bankName: "Tex Zhang" },
+  Tracy: { bank: "", account: "01377019", sortCode: "07-12-26", bankName: "Xiaoqian Xiong" },
+  Siqi: { bank: "", account: "34263963", sortCode: "77-74-01", bankName: "Siqi Zhang" },
+  Katherine: { bank: "", account: "74228498", sortCode: "60-83-71", bankName: "Meiyu Guo" },
+  Hugo: { bank: "", account: "24438396", sortCode: "40-06-02", bankName: "Yu_Xiang_Zheng" },
+  Sitong: { bank: "HSBC", account: "25131464", sortCode: "40-16-72", bankName: "Sitong Liu" },
+  Olivia: { bank: "", account: "75551985", sortCode: "51-61-34", bankName: "Olivia Smith" },
+  Oge: { bank: "Revolut", account: "21770899", sortCode: "23-01-20", bankName: "Ogechi Uzoigwe" },
+  Tagi: { bank: "Barclays", account: "13832686", sortCode: "20-96-60", bankName: "Tagrid El-Oukaili" },
+  Joe: { bank: "Monzo", account: "70180125", sortCode: "04-00-03", bankName: "Joseph King" },
+  Masudah: { bank: "Barclays", account: "80899011", sortCode: "20-66-51", bankName: "MS KHATUN" },
+  Holly: { bank: "Lloyds bank", account: "31930668", sortCode: "30-95-99", bankName: "Holly F Shepherd" },
+  Filiz: { bank: "Lloyds", account: "13594559", sortCode: "04-00-75", bankName: "Filiz Gunther" },
+  Cindy: { bank: "", account: "59382414", sortCode: "04-29-09", bankName: "Cindy Suyaa" },
+  Emma: { bank: "Monzo", account: "96825423", sortCode: "04-00-04", bankName: "zoyaa wang" },
+  Miya: { bank: "MONZO", account: "94890467", sortCode: "04-00-03", bankName: "Huilin Wang" }, // 新增 Yifan 的樣本
+});
 
 // 建立 Payment Data，可編輯的三個欄位，初始取自 mapping 的預設值
 const paymentData = reactive({
@@ -48,12 +76,65 @@ const paymentData = reactive({
 });
 
 // 當 paymentTo 改變時，自動更新 paymentData 的值
+const updatePaymentData = (key) => {
+  const data = paymentMapping[key];
+  paymentData.bank = data.bank;
+  paymentData.account = data.account;
+  paymentData.sortCode = data.sortCode;
+  paymentData.bankName = data.bankName;
+};
+
+// 使用 watch 時調用函式
 watch(paymentTo, (newVal) => {
-  paymentData.bank = paymentMapping[newVal].bank;
-  paymentData.account = paymentMapping[newVal].account;
-  paymentData.sortCode = paymentMapping[newVal].sortCode;
-  paymentData.bankName = paymentMapping[newVal].bankName; // 更新 bankName
+  updatePaymentData(newVal);
 });
+
+// 新增帳戶的資料
+const newAccount = reactive({
+  key: "",
+  bank: "",
+  account: "",
+  sortCode: "",
+  bankName: ""
+});
+
+const accountFields = [
+  { id: "key", label: "帳戶名稱", placeholder: "輸入帳戶名稱 (Key)" },
+  { id: "bank", label: "銀行名稱", placeholder: "輸入銀行名稱" },
+  { id: "account", label: "帳戶號碼", placeholder: "輸入帳戶號碼" },
+  { id: "sortCode", label: "Sort Code", placeholder: "輸入 Sort Code" },
+  { id: "bankName", label: "帳戶持有人名稱", placeholder: "輸入帳戶持有人名稱" }
+];
+
+// 新增帳戶的函式
+const addAccount = () => {
+    const isFormValid = Object.values(newAccount).every((value) => value.trim() !== "");
+  if (!isFormValid) {
+    alert("請填寫所有欄位！");
+    return;
+  }
+
+  // 將新帳戶添加到 paymentMapping
+  paymentMapping[newAccount.key] = {
+    bank: newAccount.bank,
+    account: newAccount.account,
+    sortCode: newAccount.sortCode,
+    bankName: newAccount.bankName
+  };
+
+  // 更新 paymentTo 為新增的帳戶
+  paymentTo.value = newAccount.key;
+
+  // 清空輸入欄位
+  newAccount.key = "";
+  newAccount.bank = "";
+  newAccount.account = "";
+  newAccount.sortCode = "";
+  newAccount.bankName = "";
+
+  alert("帳戶已成功新增！");
+};
+
 
 // 輸入欄位
 const dateInput = ref(new Date().toISOString().slice(0, 10));
@@ -100,7 +181,7 @@ const generatePDF = () => {
 
   // 標題：Invoice + Payment To 名稱
   doc.setFontSize(25);
-  doc.text(`Invoice_ ${paymentTo.value}`, 10, 10);
+  doc.text(`Invoice_${projectName.value}_${paymentTo.value}`, 10, 10);
 
   // 顯示 Invoice Number
   doc.setFontSize(15);
@@ -126,7 +207,7 @@ const generatePDF = () => {
         item.rate,
         item.total
       ]),
-      ["", "", "", "Subtotal", subTotal.value]
+      ["", "", "", "Subtotal", subTotal.value.toFixed(2)]
     ],
     styles: {
       cellPadding: 8,
@@ -183,7 +264,7 @@ const exportPDF = () => {
       .toLocaleString("en-US", { month: "short" })
       .toUpperCase();
     // 檔名格式：MONTH_付款人.pdf，例如 "MAR_ADEM.pdf"
-    const fileName = `Invoice_${monthAbbr}_${paymentTo.value}.pdf`;
+    const fileName = `Invoice_${projectName.value}_${paymentTo.value}.pdf`;
     doc.save(fileName);
   } catch (error) {
     console.error("Error generating PDF:", error);
@@ -198,6 +279,8 @@ const previewPDF = () => {
     console.error("Error generating PDF preview:", error);
   }
 };
+
+const showAccountForm = ref(false); // 控制新增帳戶區塊的顯示與隱藏
 </script>
 
 <template>
@@ -225,7 +308,7 @@ const previewPDF = () => {
         <option v-for="(data, key) in paymentMapping" :key="key" :value="key">
           {{ key }}
         </option>
-</select>
+      </select>
     </div>
     <!-- Payment Info 區塊，可編輯 -->
     <div class="form-group">
@@ -283,6 +366,20 @@ const previewPDF = () => {
       </table>
       <!-- 新增＋按鈕 -->
       <button class="btn" @click="addInvoiceItem">Add＋</button>
+    </div>
+
+    <div class="form-group account-form">
+      <h3 @click="showAccountForm = !showAccountForm" class="toggle-header">
+        臨時新增帳戶
+        <span>{{ showAccountForm ? "▲" : "▼" }}</span>
+      </h3>
+      <div v-show="showAccountForm">
+        <div v-for="field in accountFields" :key="field.id" class="form-row">
+          <label :for="field.id">{{ field.label }}:</label>
+          <input :id="field.id" v-model="newAccount[field.id]" type="text" :placeholder="field.placeholder" class="input" />
+        </div>
+        <button class="button" @click="addAccount">新增帳戶</button>
+      </div>
     </div>
 
     <!-- 按鈕區 -->
@@ -414,6 +511,81 @@ const previewPDF = () => {
 .preview-area h3 {
   margin-bottom: 15px;
   color: #000;
+}
+
+.account-form {
+  margin-top: 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-form h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.account-form .toggle-header {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-form .toggle-header span {
+  font-size: 14px;
+  color: #666;
+}
+
+.account-form .form-row {
+  margin-bottom: 15px;
+}
+
+.account-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.account-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.account-form input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #45a049;
 }
 </style>
 ``` 
