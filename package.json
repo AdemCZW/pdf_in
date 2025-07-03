@@ -4,13 +4,13 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev:frontend": "vite", // 前端開發
-        "dev:server": "node server/server.js", // 後端開發
+        "dev:frontend": "vite",
+        "dev:server": "node server/server.js",
         "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:server\"",
-        "build": "vite build", // 前端 build 指令
+        "build": "vite build",
         "preview": "vite preview",
-        "deploy:gh": "npm run build && gh-pages -d dist", // 若要使用 gh-pages 部署前端
-        "start": "node server/server.js" // 生產環境啟動後端（我們稍後說明如何結合前端靜態資源）
+        "deploy:gh": "npm run build && gh-pages -d dist",
+        "start": "node server/server.js"
     },
     "dependencies": {
         "jspdf": "^3.0.1",
