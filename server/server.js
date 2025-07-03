@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import cors from "cors";
 
@@ -7,18 +8,23 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-// 範例 GET API，回傳簡單訊息
+// 靜態資源路徑，假設你前端打包結果放在 'dist' 資料夾
+app.use(express.static(path.resolve(__dirname, "dist")));
+
+// API 範例
 app.get("/api/data", (req, res) => {
     res.json({ message: "Hello from Railway backend!" });
 });
 
-// 範例 POST API，可用來接收前端傳送的銀行資訊
 app.post("/api/bank", (req, res) => {
-    // 擷取前端傳來的資料
     const bankInfo = req.body;
     console.log("Received bank info:", bankInfo);
-    // 這裡您可以進一步把資料存進資料庫（例如 Railway 提供的 Postgres）
     res.json({ message: "Bank info received!", bankInfo });
+});
+
+// 支援前端路由，導向 index.html（SPA 必備）
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
 app.listen(port, () => {
