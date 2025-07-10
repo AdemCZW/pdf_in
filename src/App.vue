@@ -116,11 +116,11 @@ const addAccount = async () => {
 
   try {
     // 發送 POST 請求到後台 /api/bank 並等待回應
-    const response = await fetch("/api/bank", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newAccount)
-    });
+    const response = await fetch("https://pdfin-production.up.railway.app/api/bank", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(newAccount)
+  });
 
     if (!response.ok) {
       throw new Error("伺服器回應錯誤");
