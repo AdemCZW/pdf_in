@@ -19,7 +19,7 @@ app.use(
 );
 
 // 選擇性地處理所有 OPTIONS 請求 (可選)
-app.options("*", cors());
+// app.options("*", cors());
 
 // 建立 API 子路由
 const apiRouter = express.Router();
@@ -34,10 +34,9 @@ apiRouter.post("/bank", (req, res) => {
     res.json({ message: "Bank info received!", bankInfo });
 });
 
-// 處理 /bank 的 CORS preflight 請求，如果需要的話，也可以依賴全域設定而省略這段
-// apiRouter.options("/bank", (req, res) => {
-//   res.sendStatus(200);
-// });
+apiRouter.options("/bank", (req, res) => {
+    res.sendStatus(200);
+});
 
 // 掛載子路由
 app.use("/api", apiRouter);
