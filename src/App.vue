@@ -117,7 +117,7 @@ const addAccount = async () => {
   try {
     // 發送 POST 請求到後台 /api/bank 並等待回應
     const response = await fetch("https://pdfin-production.up.railway.app/api/bank", {
-  method: "POST",
+  method: "PUT",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(newAccount)
   });
