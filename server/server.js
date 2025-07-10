@@ -45,10 +45,11 @@ app.use("/api", apiRouter);
 
 // 靜態資源與 catch-all 路由
 app.use(express.static(path.join(__dirname, "../dist")));
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../dist", "index.html"));
-});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });

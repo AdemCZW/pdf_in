@@ -122,11 +122,10 @@ const addAccount = async () => {
   body: JSON.stringify(newAccount)
   });
 
-    if (!response.ok) {
-      throw new Error("伺服器回應錯誤");
-    }
-    const result = await response.json();
-    console.log("Server response:", result);
+  if (!response.ok) {
+  const errorText = await response.text(); // 取得錯誤訊息
+  throw new Error(`伺服器回應錯誤：${response.status} - ${errorText}`);
+}
 
     // 若後台回應成功，則更新 paymentMapping
     paymentMapping[newAccount.key] = {
