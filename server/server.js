@@ -9,6 +9,8 @@ const __filename = fileURLToPath(
     import.meta.url);
 const __dirname = path.dirname(__filename);
 
+console.log("__dirname:", __dirname); // 放在這裡
+
 app.use(express.json());
 // 全域設定 CORS；這裡只須設定一次即可
 app.use(
