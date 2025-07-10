@@ -6,10 +6,15 @@ import { fileURLToPath } from "url";
 const app = express();
 const port = process.env.PORT || 3000;
 
+// 將 ES Module 取得 __dirname
+const __filename = fileURLToPath(
+    import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.json());
 app.use(cors());
 
-// 定義 API 路由
+// 定義 API 路由 (注意：這裡必須在靜態檔案之前)
 app.get("/api/data", (req, res) => {
     res.json({ message: "Hello from Railway backend!" });
 });
@@ -20,23 +25,17 @@ app.post("/api/bank", (req, res) => {
     res.json({ message: "Bank info received!", bankInfo });
 });
 
-// 若需要處理 CORS preflight 對 OPTIONS 請求，也可以加入：
+// 處理 CORS preflight 請求
 app.options("/api/bank", (req, res) => {
     res.sendStatus(200);
 });
 
-// 靜態資源路徑：提供前端打包結果 (dist)
-app.use(
-    express.static(path.resolve(fileURLToPath(
-        import.meta.url), "../dist"))
-);
+// 提供前端打包結果的靜態資源
+app.use(express.static(path.join(__dirname, "../dist")));
 
-// 支援前端 SPA 路由
+// catch-all: 支援前端 SPA 路由
 app.get("*", (req, res) => {
-    res.sendFile(
-        path.resolve(fileURLToPath(
-            import.meta.url), "../dist/index.html")
-    );
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
 app.listen(port, () => {
