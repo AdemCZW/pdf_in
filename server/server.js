@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors());
+app.options("*", cors());
 
 // 建立一個 API 子路由
 const apiRouter = express.Router();
