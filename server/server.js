@@ -9,19 +9,16 @@ const __filename = fileURLToPath(
     import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log("__dirname:", __dirname); // 放在這裡
+console.log("__dirname:", __dirname);
 
 app.use(express.json());
-// 全域設定 CORS；這裡只須設定一次即可
 app.use(
     cors({
         origin: "*",
         methods: ["GET", "POST", "OPTIONS"],
+        allowedHeaders: ["Content-Type"],
     })
 );
-
-// 選擇性地處理所有 OPTIONS 請求 (可選)
-// app.options("*", cors());
 
 // 建立 API 子路由
 const apiRouter = express.Router();
@@ -36,20 +33,21 @@ apiRouter.post("/bank", (req, res) => {
     res.json({ message: "Bank info received!", bankInfo });
 });
 
-apiRouter.options("/bank", (req, res) => {
-    res.sendStatus(200);
-});
+// 移除獨立的 OPTIONS 處理，CORS 中間件已處理
+// apiRouter.options("/bank", (req, res) => {
+//     res.sendStatus(200);
+// });
 
-// 掛載子路由
 app.use("/api", apiRouter);
 
-// 靜態資源與 catch-all 路由
+// 靜態檔案服務
 app.use(express.static(path.join(__dirname, "../dist")));
+
+// SPA 的 catch-all 路由，僅處理 GET 請求
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
