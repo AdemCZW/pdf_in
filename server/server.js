@@ -10,10 +10,18 @@ const __filename = fileURLToPath(
 const __dirname = path.dirname(__filename);
 
 app.use(express.json());
-app.use(cors());
+// 全域設定 CORS；這裡只須設定一次即可
+app.use(
+    cors({
+        origin: "*",
+        methods: ["GET", "POST", "OPTIONS"],
+    })
+);
+
+// 選擇性地處理所有 OPTIONS 請求 (可選)
 app.options("*", cors());
 
-// 建立一個 API 子路由
+// 建立 API 子路由
 const apiRouter = express.Router();
 
 apiRouter.get("/data", (req, res) => {
@@ -26,15 +34,15 @@ apiRouter.post("/bank", (req, res) => {
     res.json({ message: "Bank info received!", bankInfo });
 });
 
-// 處理 CORS preflight 請求
-apiRouter.options("/bank", (req, res) => {
-    res.sendStatus(200);
-});
+// 處理 /bank 的 CORS preflight 請求，如果需要的話，也可以依賴全域設定而省略這段
+// apiRouter.options("/bank", (req, res) => {
+//   res.sendStatus(200);
+// });
 
 // 掛載子路由
 app.use("/api", apiRouter);
 
-// 之後再處理靜態檔案與 catch-all 路由
+// 靜態資源與 catch-all 路由
 app.use(express.static(path.join(__dirname, "../dist")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../dist", "index.html"));
