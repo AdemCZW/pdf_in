@@ -106,35 +106,52 @@ const accountFields = [
   { id: "bankName", label: "帳戶持有人名稱", placeholder: "輸入帳戶持有人名稱" }
 ];
 
-// 新增帳戶的函式
-const addAccount = () => {
-    const isFormValid = Object.values(newAccount).every((value) => value.trim() !== "");
+const addAccount = async () => {
+  // 檢查所有欄位是否皆有輸入
+  const isFormValid = Object.values(newAccount).every((value) => value.trim() !== "");
   if (!isFormValid) {
     alert("請填寫所有欄位！");
     return;
   }
 
-  // 將新帳戶添加到 paymentMapping
-  paymentMapping[newAccount.key] = {
-    bank: newAccount.bank,
-    account: newAccount.account,
-    sortCode: newAccount.sortCode,
-    bankName: newAccount.bankName
-  };
+  try {
+    // 發送 POST 請求到後台 /api/bank 並等待回應
+    const response = await fetch("/api/bank", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newAccount)
+    });
 
-  // 更新 paymentTo 為新增的帳戶
-  paymentTo.value = newAccount.key;
+    if (!response.ok) {
+      throw new Error("伺服器回應錯誤");
+    }
+    const result = await response.json();
+    console.log("Server response:", result);
 
-  // 清空輸入欄位
-  newAccount.key = "";
-  newAccount.bank = "";
-  newAccount.account = "";
-  newAccount.sortCode = "";
-  newAccount.bankName = "";
+    // 若後台回應成功，則更新 paymentMapping
+    paymentMapping[newAccount.key] = {
+      bank: newAccount.bank,
+      account: newAccount.account,
+      sortCode: newAccount.sortCode,
+      bankName: newAccount.bankName
+    };
 
-  alert("帳戶已成功新增！");
+    // 更新 Payment To 下拉選單，選擇新帳戶
+    paymentTo.value = newAccount.key;
+
+    // 清空輸入欄位
+    newAccount.key = "";
+    newAccount.bank = "";
+    newAccount.account = "";
+    newAccount.sortCode = "";
+    newAccount.bankName = "";
+
+    alert("帳戶已成功新增並保存到後台！");
+  } catch (error) {
+    console.error("Error saving account to server:", error);
+    alert("帳戶新增失敗，請稍後再試！");
+  }
 };
-
 
 // 輸入欄位
 const dateInput = ref(new Date().toISOString().slice(0, 10));
